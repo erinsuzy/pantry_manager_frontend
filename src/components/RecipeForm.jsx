@@ -4,15 +4,23 @@ import axios from 'axios';
 function RecipeForm() {
     const [name, setName] = useState('');
     const [ingredients, setIngredients] = useState('');
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const ingredientsArray = ingredients.split(',').map(item => ({ ingredient: item.trim() }));
         try {
-            await axios.post('http://localhost:8080/api/recipes', { name, ingredients: ingredients.split(',') });
+            const response = await axios.post('http://localhost:8080/api/recipes', {
+                name,
+                ingredients: ingredientsArray
+            });
+            console.log(response.data);
             setName('');
             setIngredients('');
+            setError(null);  // Clear any previous errors
         } catch (error) {
             console.error('Error adding recipe', error);
+            setError(error.response?.data?.message || 'An error occurred');
         }
     };
 
@@ -38,8 +46,14 @@ function RecipeForm() {
                 </div>
                 <button type="submit">Add</button>
             </form>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
     );
 }
 
 export default RecipeForm;
+
+
+
+
+
