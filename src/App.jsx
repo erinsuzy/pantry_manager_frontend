@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Items from './pages/Items';
 import Recipes from './pages/Recipes';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
     return (
