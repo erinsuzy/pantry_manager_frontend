@@ -4,6 +4,8 @@ import Home from './pages/Home';
 import Items from './pages/Items';
 import Recipes from './pages/Recipes';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.ink'
+
 
 
 function App() {
